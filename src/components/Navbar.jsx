@@ -45,7 +45,7 @@ const Navbar = () => {
         <p className="text-5xl">
           <FaUserCircle />
         </p>
-        <Link to="/login" className="px-7 py-4 rounded-none btn-neutral btn">
+        <Link to="/auth/login" className="px-7 py-4 rounded-none btn-neutral btn">
           Login
         </Link>
       </div>
