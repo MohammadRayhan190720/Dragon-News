@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
 import LeftNav from "../components/Layout-components/LeftNav";
+import RightNav from "../components/Layout-components/RightNav";
 import Navbar from "../components/Navbar";
 
 const HomeLayouts = () => {
@@ -12,8 +13,8 @@ const HomeLayouts = () => {
         <Navbar></Navbar>
         <div className="grid md:grid-cols-12 mt-5">
           <div className="col-span-3"> <LeftNav></LeftNav>  </div>
-          <div className="col-span-6">Main COntetnt</div>
-          <div className="col-span-3">Right Nav</div>
+          <div className="col-span-6">  </div>
+          <div className="col-span-3"><RightNav></RightNav></div>
 
         </div>
       </div>
