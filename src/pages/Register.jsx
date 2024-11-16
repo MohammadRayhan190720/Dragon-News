@@ -21,7 +21,7 @@ const Register = () => {
     const email = form.get('email')
 
     const password = form.get('password')
-    console.log(name,email,password);
+    // console.log(name,email,password);
 
     creatNewUser(email,password)
     .then((result) =>{

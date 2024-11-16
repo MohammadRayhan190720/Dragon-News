@@ -5,7 +5,7 @@ import RightNav from "../components/Layout-components/RightNav";
 const NewsDetails = () => {
   const data = useLoaderData()
   const news = data.data[0]
-  console.log(news)
+  // console.log(news)
   return (
     <div className="w-11/12 mx-auto">
       <Header></Header>
