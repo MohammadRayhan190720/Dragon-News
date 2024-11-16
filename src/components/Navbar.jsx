@@ -46,9 +46,14 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3 items-center">
-        <p className="text-5xl">
+      {
+        user && user?.email ? <div className="flex flex-col justify-center items-center">
+          <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+          <p>{user.displayName}</p>
+        </div>  :   <p className="text-5xl">
           <FaUserCircle />
         </p>
+      }
         {user && user.email ? (
           <button onClick={handleSignOut} className="px-7 py-4 rounded-none btn-neutral btn">
             Log Out

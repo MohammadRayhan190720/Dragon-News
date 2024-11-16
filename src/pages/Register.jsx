@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
 
-  const{ creatNewUser , setUser } = useContext(AuthContext);
+  const{ creatNewUser , setUser, updateUserProfile } = useContext(AuthContext);
   const [errorMessage , setErrorMessage] = useState(' ');
   const [success , setSuccess] = useState(' ');
+
+  const navigate = useNavigate();
 
   const handleRegisterForm = (e) =>{
     e.preventDefault();
@@ -15,10 +17,7 @@ const Register = () => {
 
     const form = new FormData(e.target);
     const name = form.get('name');
-    if(name.length < 5){
-      setErrorMessage('Name must be at least 5 characters')
-      return;
-    }
+    const photo = form.get('photo');
     const email = form.get('email')
 
     const password = form.get('password')
@@ -29,6 +28,16 @@ const Register = () => {
       const user = result.user;
       setUser(user)
       setSuccess('Register Successfully')
+
+      //update profile
+
+      updateUserProfile({displayName: name , photoURL : photo})
+      .then(()=>{
+        navigate('/')
+      })
+      .catch(error =>{
+        setErrorMessage(error.message)
+      })
     })
     .catch((error) =>{
       setErrorMessage(error.message)
