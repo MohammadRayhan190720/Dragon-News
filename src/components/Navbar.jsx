@@ -6,7 +6,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
 
-  const {user} = useContext(AuthContext);
+  const {user, handleSignOut} = useContext(AuthContext);
 
   const links = <>
   <Link className="mr-5" to='/'>Home</Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <p></p>
+        <p>{user?.email}</p>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -49,9 +49,18 @@ const Navbar = () => {
         <p className="text-5xl">
           <FaUserCircle />
         </p>
-        <Link to="/auth/login" className="px-7 py-4 rounded-none btn-neutral btn">
-          Login
-        </Link>
+        {user && user.email ? (
+          <button onClick={handleSignOut} className="px-7 py-4 rounded-none btn-neutral btn">
+            Log Out
+          </button>
+        ) : (
+          <Link
+            to="/auth/login"
+            className="px-7 py-4 rounded-none btn-neutral btn"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
