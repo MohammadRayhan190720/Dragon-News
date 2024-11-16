@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 
 const Navbar = () => {
+
+  const {user} = useContext(AuthContext);
 
   const links = <>
   <Link className="mr-5" to='/'>Home</Link>
@@ -36,7 +40,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
+        <p></p>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
