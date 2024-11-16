@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
 
   const{ creatNewUser , setUser } = useContext(AuthContext);
+  const [errorMessage , setErrorMessage] = useState(' ');
+  const [success , setSuccess] = useState(' ');
 
   const handleRegisterForm = (e) =>{
     e.preventDefault();
@@ -12,8 +14,13 @@ const Register = () => {
     //get form data
 
     const form = new FormData(e.target);
-    const name = form.get('name')
+    const name = form.get('name');
+    if(name.length < 5){
+      setErrorMessage('Name must be at least 5 characters')
+      return;
+    }
     const email = form.get('email')
+
     const password = form.get('password')
     console.log(name,email,password);
 
@@ -21,9 +28,11 @@ const Register = () => {
     .then((result) =>{
       const user = result.user;
       setUser(user)
+      setSuccess('Register Successfully')
     })
     .catch((error) =>{
-      console.log(error.message)
+      setErrorMessage(error.message)
+      
     })
   }
 
@@ -71,6 +80,7 @@ const Register = () => {
               required
             />
           </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
@@ -82,12 +92,17 @@ const Register = () => {
               className="input input-bordered"
               required
             />
-
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-neutral rounded-none">Register</button>
           </div>
         </form>
+        {
+          success && <p className="text-green-500">{success}</p>
+        }
+        {
+          errorMessage && <p className="text-red-500">{errorMessage}</p>
+        }
         <p className="text-center">
           Already Have an account ? please{" "}
           <Link className="text-red-500 font-bold underline" to="/auth/login">
