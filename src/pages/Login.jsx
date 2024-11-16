@@ -21,7 +21,7 @@ const Login = () => {
     //clear success and error messages
 
     setSucess('')
-    setErrorMessage('')
+    setErrorMessage(" ")
 
     userSignIn(email, password)
     .then((result) =>{
